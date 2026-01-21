@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
@@ -50,5 +51,41 @@ public class PlayerActions : MonoBehaviour
     {
         Debug.Log("·¹º§ ¾÷!!!!!");
         attackPower = attackPower + 5;
+    }
+
+    int AddNumbers(int number1, int number2)
+    {
+        int result = number1 + number2;
+        return result;
+    }
+
+    int SubNumbers(int number1, int number2)
+    {
+        int result = number1 - number2;
+        return result;
+    }
+
+    int MulNumbers(int number1, int number2)
+    {
+        int result = number1 * number2;
+        return result;
+    }
+
+    int DivNumbers(int number1, int number2)
+    {
+        int result = number1 / number2;
+        return result;
+    }
+
+    int ModNumbers(int number1, int number2)
+    {
+        int result = number1 % number2;
+        return result;
+    }
+
+    float AddNumbers(float number1, float number2)
+    {
+        float result = number1 + number2;
+        return result;
     }
 }
