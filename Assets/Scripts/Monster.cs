@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Monster
 {
+    // 멤버 변수(Field)
     public string monsterName;
     public int hp;
     public int attackPower;
 
+    // 멤버 함수(Method)
     public void Attack()
     {
         Debug.Log(monsterName + " 공격!!! 대미지 = " + attackPower);
