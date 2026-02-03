@@ -2,27 +2,46 @@ using UnityEngine;
 
 public class MoveTest : MonoBehaviour
 {
-    float speed = 0.01f;
+    Rigidbody2D rb;
+
+    float speed = 5.0f;
+
+    float accel = 1.5f;
+
+    float h = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.position = Vector3.zero;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // transform.Translate : 현재 위치에서 좌표를 더해주는 유니티 함수.
-        // new Vector2(x, y) : C#의 구조체 생성 (이동할 방향과 크기)
-        transform.Translate(new Vector2(speed, 0.0f));
+        // 좌우 방향키나 A, D 키를 눌렀을 때의 입력값을 반환받는다. (-1.0 ~ 1.0)
+        h = Input.GetAxis("Horizontal");
 
-        // 만약 x 좌표가 5를 넘어가면 다시 0으로 되돌리기 (반복 이동)
-        if(transform.position.x > 5.0f)
+        // GetKey : 키보드의 특정 키가 눌린 상태인지를 체크하는 함수.
+        // GetKeyDown : 키보드의 특정 키가 한 번 눌렸는지를 체크하는 함수.
+        // GetKeyUp : 키보드의 특정 키를 눌렀다가 뗐는지를 체크하는 함수.
+        bool isLeftCtrl = Input.GetKey(KeyCode.LeftControl);
+        if(isLeftCtrl == true)
         {
-            // transform.position 값을 직접 수정할 수 없도록 막아놨기 때문에
-            // 새로운 벡터를 대입해서 세팅해야 한다. (이 내용은 나중에 자세히 다룰 것임)
-            transform.position = new Vector2(0.0f, 0.0f);
+            accel = 1.5f;
         }
+        else
+        {
+            accel = 1.0f;
+        }
+    }
+
+    // 물리 기반 이동 처리를 할 때 이 함수에서 하는 것이 좋다.
+    void FixedUpdate()
+    {
+        // Rigidbody2D의 속도를 변경해서 오브젝트를 이동시킨다.
+        rb.linearVelocity = new Vector2(h * speed * accel, rb.linearVelocity.y);
     }
 }
