@@ -776,7 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   accel: 1.5
-  jumpPower: 15
+  jumpPower: 16
   rb: {fileID: 1095074147}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
