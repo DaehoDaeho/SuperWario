@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10.0f;
     public Rigidbody2D rb;
 
+    public Animator anim;
+
+    public SpriteRenderer spriteRenderer;
+
     // 플레이어가 지면에 착지해 있는지 여부를 저장할 변수.
     bool isGrounded = false;
 
@@ -38,6 +42,27 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
+
+        // 방향 키를 눌렀으면 Run 애니메이션으로 전환. 누르지 않았으면 Idle 애니메이션으로 전환.
+        if(h != 0.0f)
+        {
+            anim.SetBool("isRun", true);
+        }
+        else if(h == 0.0f)
+        {
+            anim.SetBool("isRun", false);
+        }
+
+        if(h > 0.0f)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if(h < 0.0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     // 물리 기반 이동 처리를 할 때 이 함수에서 하는 것이 좋다.
