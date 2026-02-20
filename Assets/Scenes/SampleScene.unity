@@ -778,6 +778,7 @@ GameObject:
   - component: {fileID: 1095074149}
   - component: {fileID: 1095074150}
   - component: {fileID: 1095074151}
+  - component: {fileID: 1095074152}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -975,6 +976,24 @@ MonoBehaviour:
   currentHealth: 0
   isInvincible: 0
   spriteRenderer: {fileID: 1095074144}
+--- !u!114 &1095074152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095074142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab230803542cf54494029c50cd5c889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1095074150}
+  attackPoint: {fileID: 1095074145}
+  attackRange: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &1334447487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,6 +1166,7 @@ GameObject:
   - component: {fileID: 1428047811}
   - component: {fileID: 1428047810}
   - component: {fileID: 1428047814}
+  - component: {fileID: 1428047815}
   m_Layer: 7
   m_Name: Monster
   m_TagString: Untagged
@@ -1309,6 +1329,19 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1428047815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428047809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae61d81604044541838d427795f06a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
 --- !u!1 &1431052126
 GameObject:
   m_ObjectHideFlags: 0
