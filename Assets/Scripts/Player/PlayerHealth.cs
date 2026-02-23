@@ -49,6 +49,8 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("플레이어 사망!!!");
 
+        GameManager.instance.SetGameOver(true);
+
         // 게임 오브젝트를 비활성화 처리.
         gameObject.SetActive(false);
     }

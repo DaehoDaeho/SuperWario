@@ -12,7 +12,8 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player") == true)
         {
             Debug.Log("µ¿Àü È¹µæ!!!");
-
+            GameManager.instance.AddScore(100);
+            
             Destroy(gameObject);
         }
     }
