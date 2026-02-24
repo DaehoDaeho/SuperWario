@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;    // TextMeshPro를 제어하기 위해 추가해야 하는 네임스페이스.
 
 public class GameManager : MonoBehaviour
 {
@@ -13,26 +14,30 @@ public class GameManager : MonoBehaviour
     public float limitTime = 30.0f;
     private float limitTimer = 0.0f;
 
+    public TMP_Text scoreText;
+
     private void Awake()
     {
         // 나 자신(GameManager)을 집어넣어서 초기화 한다.
         instance = this;
 
         limitTimer = 0.0f;
+
+        UpdateUI();
     }
 
     private void Update()
     {
-        if(isGameOver == true)
-        {
-            return;
-        }
+        //if(isGameOver == true)
+        //{
+        //    return;
+        //}
 
-        limitTimer += Time.deltaTime;
-        if(limitTimer >= limitTime)
-        {
-            SetGameOver(true);
-        }
+        //limitTimer += Time.deltaTime;
+        //if(limitTimer >= limitTime)
+        //{
+        //    SetGameOver(true);
+        //}
     }
 
     /// <summary>
@@ -49,6 +54,8 @@ public class GameManager : MonoBehaviour
         //totalScore = totalScore + amount;
         totalScore += amount;
         Debug.Log("현재 점수 : " + totalScore);
+
+        UpdateUI();
     }
 
     public void SetGameOver(bool gameOver)
@@ -59,5 +66,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
 
         Debug.Log("isGameOver = " + isGameOver);
+    }
+
+    void UpdateUI()
+    {
+        scoreText.text = "Score : " + totalScore.ToString();    // 정수를 문자열로 변환.
     }
 }

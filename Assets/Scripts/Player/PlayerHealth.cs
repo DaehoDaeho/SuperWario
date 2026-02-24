@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;   // 코루틴을 사용하기 위한 네임스페이스.
+using UnityEngine.UI;   // 유니티 UI를 제어하기 위한 네임스페이스.
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    public Image imageHPBar;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // HP 초기화.
         currentHealth = maxHealth;
+
+        UpdateUI();
     }
 
     /// <summary>
@@ -33,7 +38,9 @@ public class PlayerHealth : MonoBehaviour
         // 대미지를 적용해서 HP를 감소시킨다.
         currentHealth = currentHealth - amount;
 
-        if(currentHealth <= 0)
+        UpdateUI();
+
+        if (currentHealth <= 0)
         {
             // 사망 처리.
             Die();
@@ -94,5 +101,16 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
         }
+    }
+
+    void UpdateUI()
+    {
+        if(currentHealth <= 0)
+        {
+            imageHPBar.fillAmount = 0.0f;
+            return;
+        }
+
+        imageHPBar.fillAmount = (float)currentHealth / (float)maxHealth;
     }
 }
