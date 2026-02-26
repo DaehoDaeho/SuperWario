@@ -988,6 +988,8 @@ MonoBehaviour:
   limitTime: 30
   scoreText: {fileID: 537433894}
   gameOver: {fileID: 1812004392}
+  audioRestart: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+  audioGameOver: {fileID: 0}
 --- !u!4 &746929393
 Transform:
   m_ObjectHideFlags: 0
