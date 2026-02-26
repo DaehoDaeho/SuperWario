@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;    // TextMeshPro를 제어하기 위해 추가해야 하는 네임스페이스.
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
 
     public GameObject gameOver;
+
+    public AudioClip audioRestart;
+    public AudioClip audioGameOver;
 
     private void Awake()
     {
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
         isGameOver = gameOver;
 
         this.gameOver.SetActive(true);
+        AudioManager.instance.PlaySFX(audioGameOver);
 
         // 유니티의 시간을 멈추게 한다.
         Time.timeScale = 0.0f;
@@ -85,7 +90,16 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
 
+        AudioManager.instance.PlaySFX(audioRestart);
+
         //SceneManager.LoadScene("SampleScene");
+
+        StartCoroutine(ReloadScene());
+    }
+
+    IEnumerator ReloadScene()
+    {
+        yield return new WaitForSeconds(1.0f);
 
         // 현재 열려 있는 씬의 이름을 가져와서 다시 로딩.
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

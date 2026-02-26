@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public AudioClip audioCoin;
+
     /// <summary>
     /// Trigger가 켜진 오브젝트와 겹쳤을 때 호출되는 함수.
     /// </summary>
@@ -13,6 +15,7 @@ public class Coin : MonoBehaviour
         {
             Debug.Log("동전 획득!!!");
             GameManager.instance.AddScore(100);
+            AudioManager.instance.PlaySFX(audioCoin);
             
             Destroy(gameObject);
         }
