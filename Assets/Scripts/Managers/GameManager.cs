@@ -17,11 +17,17 @@ public class GameManager : MonoBehaviour
     private float limitTimer = 0.0f;
 
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
+    public TMP_Text totalCoinText;
 
     public GameObject gameOver;
 
     public AudioClip audioRestart;
     public AudioClip audioGameOver;
+
+    public int highScore = 0;
+    public int totalCoin = 0;
+
 
     private void Awake()
     {
@@ -29,6 +35,16 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         limitTimer = 0.0f;
+
+        // HighScore 키로 저장한 데이터를 불러오는 코드.
+        // 만약 저장한 데이터가 없으면 0을 대입.
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        Debug.Log("highScore = " + highScore);
+
+        highScoreText.text = "Best : " + highScore.ToString();
+
+        totalCoin = PlayerPrefs.GetInt("TotalCoin", 0);
+        totalCoinText.text = "Coin : " + totalCoin.ToString();
 
         UpdateUI();
 
@@ -38,16 +54,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if(isGameOver == true)
-        //{
-        //    return;
-        //}
+        if(Input.GetKeyDown(KeyCode.F11) == true)
+        {
+            PlayerPrefs.DeleteKey("HighScore");
 
-        //limitTimer += Time.deltaTime;
-        //if(limitTimer >= limitTime)
-        //{
-        //    SetGameOver(true);
-        //}
+            highScore = PlayerPrefs.GetInt("HighScore", 0);
+            Debug.Log("highScore = " + highScore);
+        }
+
+        if(Input.GetKeyDown(KeyCode.F12) == true)
+        {
+            PlayerPrefs.DeleteAll();
+
+            highScore = PlayerPrefs.GetInt("HighScore", 0);
+            highScoreText.text = "Best : " + highScore.ToString();
+
+            totalCoin = PlayerPrefs.GetInt("TotalCoin", 0);
+            totalCoinText.text = "Coin : " + totalCoin.ToString();
+        }
     }
 
     /// <summary>
@@ -68,6 +92,15 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void AddCoinCount(int count)
+    {
+        totalCoin += count;
+        PlayerPrefs.SetInt("TotalCoin", totalCoin);
+        PlayerPrefs.Save();
+
+        totalCoinText.text = "Coin : " + totalCoin.ToString();
+    }
+
     public void SetGameOver(bool gameOver)
     {
         isGameOver = gameOver;
@@ -77,6 +110,16 @@ public class GameManager : MonoBehaviour
 
         // 유니티의 시간을 멈추게 한다.
         Time.timeScale = 0.0f;
+
+        if(totalScore > highScore)
+        {
+            highScore = totalScore;
+
+            PlayerPrefs.SetInt("HighScore", highScore);
+
+            // 안전을 위해 확실한 저장 함수를 추가로 호출.
+            PlayerPrefs.Save();
+        }
 
         Debug.Log("isGameOver = " + isGameOver);
     }
