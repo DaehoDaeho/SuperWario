@@ -16,6 +16,7 @@ public class Coin : MonoBehaviour
             Debug.Log("µ¿Àü È¹µæ!!!");
             GameManager.instance.AddScore(100);
             GameManager.instance.AddCoinCount(1);
+            GameManager.instance.ShowGainCoinParticle(transform.position);
             AudioManager.instance.PlaySFX(audioCoin);
             
             Destroy(gameObject);

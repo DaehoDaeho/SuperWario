@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public int highScore = 0;
     public int totalCoin = 0;
 
+    public GameObject gainCoinParticlePrefab;
+
 
     private void Awake()
     {
@@ -146,5 +148,17 @@ public class GameManager : MonoBehaviour
 
         // 현재 열려 있는 씬의 이름을 가져와서 다시 로딩.
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ShowGainCoinParticle(Vector3 position)
+    {
+        if(gainCoinParticlePrefab != null)
+        {
+            GameObject go = Instantiate(gainCoinParticlePrefab, position, Quaternion.identity);
+            if(go != null)
+            {
+                Destroy(go, 1.0f);
+            }
+        }
     }
 }

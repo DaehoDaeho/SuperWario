@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip audioJump;
 
+    public GameObject dustParticlePrefab;
+    public Transform groundCheckPoint;
+
     // 플레이어가 지면에 착지해 있는지 여부를 저장할 변수.
     bool isGrounded = false;
 
@@ -51,6 +54,22 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             AudioManager.instance.PlaySFX(audioJump);
+
+            if(dustParticlePrefab != null)
+            {
+                GameObject dust = Instantiate(dustParticlePrefab, groundCheckPoint.position, Quaternion.identity);
+                if(dust != null)
+                {
+                    ParticleSystem particleSystem = dust.GetComponent<ParticleSystem>();
+                    if(particleSystem != null)
+                    {
+                        particleSystem.Play();
+                    }
+
+                    // 1초 후 파괴.
+                    Destroy(dust, 1.0f);
+                }
+            }
         }
 
         // 방향 키를 눌렀으면 Run 애니메이션으로 전환. 누르지 않았으면 Idle 애니메이션으로 전환.

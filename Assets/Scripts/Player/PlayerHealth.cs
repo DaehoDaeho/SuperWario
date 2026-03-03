@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     public Image imageHPBar;
 
+    public CameraFollow cam;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +41,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = currentHealth - amount;
 
         UpdateUI();
+
+        if(cam != null)
+        {
+            cam.StartCoroutine(cam.Shake(0.2f, 0.3f));
+        }
 
         if (currentHealth <= 0)
         {

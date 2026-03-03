@@ -994,6 +994,7 @@ MonoBehaviour:
   audioGameOver: {fileID: 0}
   highScore: 0
   totalCoin: 0
+  gainCoinParticlePrefab: {fileID: 6192724089161036641, guid: 6bb0d5e5550931140bf9d7f4c411e179, type: 3}
 --- !u!4 &746929393
 Transform:
   m_ObjectHideFlags: 0
@@ -1561,6 +1562,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   audioJump: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  dustParticlePrefab: {fileID: 8104679106497469736, guid: 51a4f1d951c2f3d45856d014e4d1bc05, type: 3}
+  groundCheckPoint: {fileID: 1588532100}
 --- !u!95 &1095074150
 Animator:
   serializedVersion: 7
@@ -1600,6 +1603,7 @@ MonoBehaviour:
   isInvincible: 0
   spriteRenderer: {fileID: 1095074144}
   imageHPBar: {fileID: 1260196087}
+  cam: {fileID: 519420033}
 --- !u!114 &1095074152
 MonoBehaviour:
   m_ObjectHideFlags: 0
