@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
 
     public int highScore = 0;
     public int totalCoin = 0;
+    public int currentCoin = 0;
 
     public GameObject gainCoinParticlePrefab;
+    public DialogueManager dialogueManager;
 
 
     private void Awake()
@@ -94,8 +96,14 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    public int GetCurrentCoin()
+    {
+        return currentCoin;
+    }
+
     public void AddCoinCount(int count)
     {
+        currentCoin += count;
         totalCoin += count;
         PlayerPrefs.SetInt("TotalCoin", totalCoin);
         PlayerPrefs.Save();
