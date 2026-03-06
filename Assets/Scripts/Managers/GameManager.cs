@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject gainCoinParticlePrefab;
     public DialogueManager dialogueManager;
 
+    public PauseGameUI pauseGame;
 
     private void Awake()
     {
@@ -75,6 +76,19 @@ public class GameManager : MonoBehaviour
 
             totalCoin = PlayerPrefs.GetInt("TotalCoin", 0);
             totalCoinText.text = "Coin : " + totalCoin.ToString();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            SetPauseGameUIVisible(true);
+        }
+    }
+
+    public void SetPauseGameUIVisible(bool visible)
+    {
+        if(pauseGame != null)
+        {
+            pauseGame.SetPauseGameUIVisible(visible);
         }
     }
 
