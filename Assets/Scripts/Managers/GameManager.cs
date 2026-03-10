@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public DialogueManager dialogueManager;
 
     public PauseGameUI pauseGame;
+    public GameObject gameClear;
 
     private void Awake()
     {
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         // 게임 오버 UI 비활성화.
         gameOver.SetActive(false);
+
+        gameClear.SetActive(false);
     }
 
     private void Update()
@@ -182,5 +185,11 @@ public class GameManager : MonoBehaviour
                 Destroy(go, 1.0f);
             }
         }
+    }
+
+    public void ShowGameClearUI()
+    {
+        gameClear.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 }
